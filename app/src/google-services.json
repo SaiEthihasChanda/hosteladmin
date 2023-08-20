@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "5437404343",
+    "project_id": "hostel-caf95",
+    "storage_bucket": "hostel-caf95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5437404343:android:633581a0399e8f23584932",
+        "android_client_info": {
+          "package_name": "com.example.actualprojecthopefully"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5437404343-qfdqdsv7julkm038ck0bcd8koeekv1df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBazGzOMHzf58LhnpQK2cCyyNJYubAFomY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5437404343-f8ararmub645ets0isp7a5canukvv86d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5437404343:android:074338e9d4f6aea1584932",
+        "android_client_info": {
+          "package_name": "com.example.hostel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5437404343-qfdqdsv7julkm038ck0bcd8koeekv1df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBazGzOMHzf58LhnpQK2cCyyNJYubAFomY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5437404343-f8ararmub645ets0isp7a5canukvv86d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
