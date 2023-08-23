@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,7 @@ public class FloorC extends Fragment {
     RecyclerView recyclerViewC;
     FirebaseFirestore mStore;
     FirebaseAuth mAuth;
+    Button buttonC;
 
 
     public FloorC() {
@@ -47,22 +49,8 @@ public class FloorC extends Fragment {
         List<item> items = new ArrayList<item>();
         mStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        Map<String, Object> user = new HashMap<>();
-        user.put("someone","Present");
-        user.put("somebody else","Present");
-        user.put("Monkey","Present");
+        //buttonC = view.findViewById(R.id.add_eventC);
 
-        mStore.collection("Floor C").add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                Toast.makeText(getContext(), "user added", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
 
@@ -75,4 +63,7 @@ public class FloorC extends Fragment {
 
         return view;
     }
+
+
+
 }

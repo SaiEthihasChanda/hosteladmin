@@ -11,24 +11,30 @@
             android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/recyclerview"
-                        ></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="0dp"></androidx.recyclerview.widget.RecyclerView>
+
+                <Button
+                    android:id="@+id/add_studentA"
+                    android:layout_width="47dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="36dp"
+                    android:layout_marginBottom="41dp"
+                    android:onClick="add_student"
+                    android:text="+" />
+
+
         </RelativeLayout>
 
 
 
 
-
-
-
-
-
-
-
-
-    <!-- TODO: Update blank fragment layout -->
+        <!-- TODO: Update blank fragment layout -->
 
 
 </FrameLayout>
