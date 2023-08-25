@@ -12,11 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,10 +32,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     FirebaseFirestore mStore;
 
 
+
     private int clickedPosition = RecyclerView.NO_POSITION; // Default value
 
 
-    public MyAdapter(Context context, List<item> items) {
+    public MyAdapter(Context context, List<item> items;) {
         this.context = context;
         this.items = items;
     }
@@ -64,17 +62,63 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         // Convert the date to a string in the desired format
         String formattedDate = dateFormat.format(currentDate);
         String inf = items.get(position).getStatus();
+        String Floor = items.get(position).getFloor();
         if (inf.equals("absent")) {
             holder.itemView.setBackgroundColor(Color.RED);
         } else {
             holder.itemView.setBackgroundColor(Color.GREEN);
         }
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int clickedPosition = holder.getAdapterPosition();
                 String marker = items.get(clickedPosition).getReg();
                 //Toast.makeText(v.getContext(), marker,Toast.LENGTH_SHORT).show();
+                mStore = FirebaseFirestore.getInstance();
+                CollectionReference collectionRef = mStore.collection(Floor);
+
+                collectionRef.whereEqualTo("Registration Number",marker)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful()){
+                                    QuerySnapshot querySnapshot = task.getResult();
+                                    for (QueryDocumentSnapshot document : querySnapshot){
+                                        String attendance = document.getString(formattedDate);
+                                        Map<String, Object> data = new HashMap<>();
+                                        if(attendance.equals("absent")){
+
+                                            data.put(formattedDate,"present");
+
+
+
+                                        }
+                                        else {
+                                            data.put(formattedDate,"absent");
+                                            document.getReference().update(data);
+
+                                        }
+                                        document.getReference().update(data);
+                                    }
+                                    //FloorA.refreshA();
+                                    //FloorA floorA = new FloorA();
+                                    ////floorA.refreshA();
+                                    //FloorB floorB = new FloorB();
+                                    //floorB.refreshB();
+
+                                }
+                                else{
+                                    Toast.makeText(v.getContext(), "error retrieving data",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+
+
+
 
 
             }

@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -60,6 +61,10 @@ public class FloorB extends Fragment {
         View view = inflater.inflate(R.layout.fragment_floor_b, container, false);
         List<item> items = new ArrayList<item>();
         mStore = FirebaseFirestore.getInstance();
+        mStore.setFirestoreSettings(new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build());
+
         mAuth = FirebaseAuth.getInstance();
         buttonB = view.findViewById(R.id.add_studentB);
 
@@ -88,7 +93,7 @@ public class FloorB extends Fragment {
         return view;
     }
 
-    private void refreshB() {
+    public void refreshB() {
 
         Date currentDate = new Date();
 
@@ -112,7 +117,7 @@ public class FloorB extends Fragment {
                                     String name = document.getString("Name");
                                     String reg = document.getString("Registration Number");
                                     String stat = document.getString(formattedDate);
-                                    items.add(new item(name,stat, reg));
+                                    items.add(new item(name,stat, reg, "Floor B"));
                                 }
                                 if (!document.contains(formattedDate)) {
                                     Map<String, Object> today = new HashMap<>();

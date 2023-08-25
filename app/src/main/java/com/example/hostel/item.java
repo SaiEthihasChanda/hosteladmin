@@ -16,12 +16,23 @@ public class item {
 
     String Reg;
 
+    public String getFloor() {
+        return Floor;
+    }
 
-    public item(String name, String stat, String reg) {
+    public void setFloor(String floor) {
+        Floor = floor;
+    }
+
+    String Floor;
+
+
+    public item(String name, String stat, String reg, String floor) {
 
         this.name = name;
         this.Status = stat;
         this.Reg = reg;
+        this.Floor = floor;
 
 
     }

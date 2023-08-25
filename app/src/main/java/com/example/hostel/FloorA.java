@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 
 
-public class FloorA extends Fragment {
+public class FloorA extends Fragment implements MyAdapter.RefreshListener {
     ArrayList<String> list;
     RecyclerView recyclerView;
     FirebaseFirestore mStore;
@@ -66,6 +65,7 @@ public class FloorA extends Fragment {
         button = view.findViewById(R.id.add_studentA);
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,10 +86,12 @@ public class FloorA extends Fragment {
 
 
 
+
         return view;
     }
 
-    private void refreshA() {
+    public  void refreshA() {
+
         Date currentDate = new Date();
 
         // Define the desired date format
@@ -113,7 +115,7 @@ public class FloorA extends Fragment {
                                     String name = document.getString("Name");
                                     String reg = document.getString("Registration Number");
                                     String stat = document.getString(formattedDate);
-                                    items.add(new item(name,stat,reg));
+                                    items.add(new item(name,stat,reg,"Floor A"));
                                     // Do something with the data
                                 }
                                 if (!document.contains(formattedDate)) {
@@ -195,6 +197,10 @@ public class FloorA extends Fragment {
         });
         alertDialog.show();
 
+    }
+
+    public void refreshData() {
+        refreshA(); // Call the refreshA() function here
     }
 
 
